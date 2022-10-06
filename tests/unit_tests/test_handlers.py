@@ -1,15 +1,15 @@
 from api.handlers import Handlers
 
 
-def test_get_answer_one():
+def test_get_cat_name():
     handlers = Handlers()
-    expected = {"key_one": "value_one"}
-    actual = handlers.get_answer_one()
+    expected = {"misty": "maine coon"}
+    actual = handlers.get_cat_name()
     assert expected == actual
 
 
-def test_get_answer_two():
+def test_get_dog_name():
     handlers = Handlers()
-    expected = {"key_two": "value_two"}
-    actual = handlers.get_answer_two()
+    expected = {"sherlock": "boston terrier"}
+    actual = handlers.get_dog_name()
     assert expected == actual

@@ -1,26 +1,26 @@
 from flask import Response
 import json
 
-from api.routes import specific_call, specific_call_2
+from api.routes import handle_cats, handle_dogs
 
 
-def test_mock_specific_call_200(mocker):
+def test_mock_handle_cats_200(mocker):
     mocker.patch(
-        'api.handlers.Handlers.get_answer_one',
-        return_value={"key_one": "value_one"}
+        'api.handlers.Handlers.get_cat_name',
+        return_value={"misty": "maine coon"}
     )
     expected = Response(
-        json.dumps({"key_one": "value_one"}),
+        json.dumps({"misty": "maine coon"}),
         status=200,
         mimetype='application/json'
     ).get_json()
-    actual = specific_call().get_json()
+    actual = handle_cats().get_json()
     assert expected == actual
 
 
-def test_mock_specific_call_404(mocker):
+def test_mock_handle_cats_404(mocker):
     mocker.patch(
-        'api.handlers.Handlers.get_answer_one',
+        'api.handlers.Handlers.get_cat_name',
         return_value=''
     )
     expected = Response(
@@ -28,27 +28,27 @@ def test_mock_specific_call_404(mocker):
         status=404,
         mimetype='application/json'
     ).get_json()
-    actual = specific_call().get_json()
+    actual = handle_cats().get_json()
     assert expected == actual
 
 
-def test_mock_specific_call_2_200(mocker):
+def test_mock_handle_dogs_200(mocker):
     mocker.patch(
-        'api.handlers.Handlers.get_answer_two',
-        return_value={"key_two": "value_two"}
+        'api.handlers.Handlers.get_dog_name',
+        return_value={"sherlock": "boston terrier"}
     )
     expected = Response(
-        json.dumps({"key_two": "value_two"}),
+        json.dumps({"sherlock": "boston terrier"}),
         status=200,
         mimetype='application/json'
     ).get_json()
-    actual = specific_call_2().get_json()
+    actual = handle_dogs().get_json()
     assert expected == actual
 
 
-def test_mock_specific_call_2_404(mocker):
+def test_mock_handle_dogs_404(mocker):
     mocker.patch(
-        'api.handlers.Handlers.get_answer_two',
+        'api.handlers.Handlers.get_dog_name',
         return_value=''
     )
     expected = Response(
@@ -56,5 +56,5 @@ def test_mock_specific_call_2_404(mocker):
         status=404,
         mimetype='application/json'
     ).get_json()
-    actual = specific_call_2().get_json()
+    actual = handle_dogs().get_json()
     assert expected == actual
