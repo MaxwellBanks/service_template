@@ -6,11 +6,11 @@ from api.handlers import Handlers
 api_bp = Blueprint('api', __name__)
 
 
-@api_bp.route('/example_service/specific_call', methods=['GET'])
-def specific_call() -> Response:
+@api_bp.route('/pets/cats', methods=['GET'])
+def handle_cats() -> Response:
     handlers = Handlers()
     status = 404
-    response_data = handlers.get_answer_one()
+    response_data = handlers.get_cat_name()
     if response_data:
         status = 200
     return Response(
@@ -20,11 +20,11 @@ def specific_call() -> Response:
     )
 
 
-@api_bp.route('/example_service/specific_call_2', methods=['GET'])
-def specific_call_2() -> Response:
+@api_bp.route('/pets/dogs', methods=['GET'])
+def handle_dogs() -> Response:
     handlers = Handlers()
     status = 404
-    response_data = handlers.get_answer_two()
+    response_data = handlers.get_dog_name()
     if response_data:
         status = 200
     return Response(
