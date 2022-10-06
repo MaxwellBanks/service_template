@@ -1,0 +1,43 @@
+name: pull_request
+  
+on: [pull_request]
+ 
+jobs:         
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+      - run: |
+          python3 -m pip install -r requirements.txt
+          pytest tests/
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+      - run: |
+          python3 -m pip install -r requirements.txt
+          python3 -m flake8 --exclude=__pycache__,.git,.github,.pytest_cache,venv
+
+  secrets-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+      - uses: edplato/trufflehog-actions-scan@master
+
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/dependency-review-action@v2
