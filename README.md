@@ -5,9 +5,5 @@ TODO:
 - Add integration tests
 - Add docker build job
 - Add docker publish job
-- Add auto-versioning job?
 - Add flasgger/other doc solution
-- Add secrets scan (trufflehog)
-- Add vulnerability scan (grype)
-- Add dependency checker on pull request
 - Add auto-deploy on successful pull request to main
