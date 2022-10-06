@@ -1,6 +1,6 @@
 # Service Template
 
-This repository provides a simple template and demonstration for a microservice. The demo service here could be considered analagous to a backend service that runs some calculations--something requests a result by calling an endpoint and the service sends back a response.
+This repository provides a simple template and demonstration for a microservice. The demo service here could be considered analagous to a backend service that runs some calculations--a client requests a result by calling an endpoint and the service sends back a response.
 
 # Template Components
 
