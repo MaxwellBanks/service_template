@@ -13,8 +13,8 @@ def test_mock_specific_call_200(mocker):
         json.dumps({"key_one": "value_one"}),
         status=200,
         mimetype='application/json'
-    )
-    actual = specific_call()
+    ).get_json()
+    actual = specific_call().get_json()
     assert expected == actual
 
 
@@ -27,8 +27,8 @@ def test_mock_specific_call_404(mocker):
         json.dumps(''),
         status=404,
         mimetype='application/json'
-    )
-    actual = specific_call()
+    ).get_json()
+    actual = specific_call().get_json()
     assert expected == actual
 
 
