@@ -36,12 +36,6 @@ jobs:
           ref: ${{ github.head_ref }}
       - uses: edplato/trufflehog-actions-scan@master
 
-  dependency-review:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/dependency-review-action@v2
-
   static-scan:
     runs-on: ubuntu-latest
     steps:
