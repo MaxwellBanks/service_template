@@ -55,4 +55,4 @@ def test_mock_specific_call_2_404(mocker):
     expected_status_code = 404
     actual = specific_call_2()
     assert actual.status_code == expected_status_code
-    assert actual.content == expected_content
+    assert actual.get_data() == expected_content
