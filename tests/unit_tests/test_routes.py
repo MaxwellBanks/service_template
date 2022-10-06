@@ -41,8 +41,8 @@ def test_mock_specific_call_2_200(mocker):
         json.dumps({"key_two": "value_two"}),
         status=200,
         mimetype='application/json'
-    )
-    actual = specific_call_2()
+    ).get_json()
+    actual = specific_call_2().get_json()
     assert expected == actual
 
 
