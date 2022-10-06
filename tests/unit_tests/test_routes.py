@@ -51,8 +51,10 @@ def test_mock_specific_call_2_404(mocker):
         'api.handlers.Handlers.get_answer_two',
         return_value=''
     )
-    expected_content = ''
-    expected_status_code = 404
-    actual = specific_call_2()
-    assert actual.status_code == expected_status_code
-    assert actual.get_data() == expected_content
+    expected = Response(
+        json.dumps(''),
+        status=404,
+        mimetype='application/json'
+    ).get_json()
+    actual = specific_call_2().get_json()
+    assert expected == actual
