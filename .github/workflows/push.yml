@@ -35,3 +35,12 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.head_ref }}
       - uses: edplato/trufflehog-actions-scan@master
+
+  static-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anchore/scan-action@v3
+        with:
+          path: "."
+          fail-build: true
+          severity-cutoff: critical

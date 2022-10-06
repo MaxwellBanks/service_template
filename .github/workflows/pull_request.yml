@@ -41,3 +41,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/dependency-review-action@v2
+
+  static-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anchore/scan-action@v3
+        with:
+          path: "."
+          fail-build: true
+          severity-cutoff: critical
